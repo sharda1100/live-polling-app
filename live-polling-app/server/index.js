@@ -4,10 +4,12 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
-// PORT is not needed when deploying to Vercel, as Vercel assigns the port
-const PORT = 5000; // Uncommented for local development
+const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST"]
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -17,10 +19,11 @@ app.get('/', (req, res) => {
 // Create HTTP server and attach Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: "*", // Allow all origins for demo purposes
-    methods: ["GET", "POST"]
-  }
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    },
+    transports: ['websocket', 'polling']
 });
 
 // Poll state
@@ -274,10 +277,5 @@ io.on('connection', (socket) => {
     });
 });
 
-// Export the server for Vercel
+// For Vercel deployment - export the server, not app
 module.exports = server;
-
-// The server.listen(PORT, ...) line is needed for local development
-server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
