@@ -4,12 +4,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #7765DA 0%, #5767D0 100%);
   padding: 20px;
 }
 
 .poll-badge {
-  background: #7c5cff;
+  background: #7765DA;
   color: #fff;
   padding: 12px 32px;
   border-radius: 32px;
@@ -18,7 +18,7 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   display: inline-block;
-  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
 }
 
 .kicked-out-content {
@@ -34,14 +34,14 @@
 .kicked-out-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #333;
+  color: #373737;
   margin: 0 0 24px 0;
   line-height: 1.2;
 }
 
 .kicked-out-message {
   font-size: 1.1rem;
-  color: #666;
+  color: #6E6E6E;
   line-height: 1.6;
   margin: 0;
   max-width: 400px;
