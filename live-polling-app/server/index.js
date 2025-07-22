@@ -15,23 +15,10 @@ app.get('/', (req, res) => {
 });
 
 // Create HTTP server and attach Socket.IO
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://live-poll-frontend.vercel.app", // Your Vercel frontend URL
-  // Add other frontend URLs if necessary
-];
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.log(`CORS Error: Origin ${origin} not allowed.`);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*", // Allow all origins for demo purposes
     methods: ["GET", "POST"]
   }
 });
