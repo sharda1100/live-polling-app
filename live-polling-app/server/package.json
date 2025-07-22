@@ -1,17 +1,20 @@
 {
-  "name": "server",
+  "name": "polling-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["polling", "socket.io", "express"],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Socket.IO polling server",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "serverless-http": "^3.2.0",
     "socket.io": "^4.8.1"
   }
 }

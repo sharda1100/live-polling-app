@@ -1,0 +1,266 @@
+.teacher-panel-container {
+  max-width: 680px;
+  margin: 60px auto;
+  padding: 48px 32px;
+  background: #F2F2F2;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.teacher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.teacher-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.past-polls-btn {
+  background: #5767D0;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.past-polls-btn:hover {
+  background: #4F0DCE;
+}
+
+.chat-btn {
+  background: #7765DA;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.chat-btn:hover {
+  background: #5767D0;
+}
+
+.manage-students-btn {
+  background: #6E6E6E;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.manage-students-btn:hover {
+  background: #373737;
+}-panel-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.poll-badge {
+  background: #7765DA;
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 16px;
+  font-size: 1rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #373737;
+}
+
+.highlight {
+  font-weight: 700;
+  color: #4F0DCE;
+}
+
+.subtitle {
+  color: #6E6E6E;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.form-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.timer-select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+}
+
+.question-input {
+  width: 100%;
+  min-height: 80px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  padding: 12px;
+  margin-bottom: 4px;
+  background: #f7f7fa;
+  resize: none;
+}
+
+.char-count {
+  text-align: right;
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.options-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.options-col {
+  flex: 2;
+}
+
+.options-label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.option-num {
+  background: #7765DA;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.option-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: #F2F2F2;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.add-option-btn {
+  margin-top: 8px;
+  background: #fff;
+  border: 1.5px solid #7765DA;
+  color: #7765DA;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.add-option-btn:hover {
+  background: #7765DA;
+  color: #fff;
+}
+
+.correct-col {
+  flex: 1;
+}
+
+.correct-label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.correct-radio-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.radio-custom {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #bbb;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+input[type="radio"]:checked + .radio-custom.yes {
+  border-color: #7765DA;
+  background: #7765DA;
+}
+
+input[type="radio"]:checked + .radio-custom.no {
+  border-color: #6E6E6E;
+  background: #6E6E6E;
+}
+
+.ask-btn {
+  display: block;
+  margin: 32px auto 0 auto;
+  background: linear-gradient(90deg, #7765DA 0%, #5767D0 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 14px 64px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ask-btn:hover {
+  background: linear-gradient(90deg, #4F0DCE 0%, #7765DA 100%);
+}
+
+.error-msg {
+  color: #d32f2f;
+  margin-top: 8px;
+  font-size: 1rem;
+}

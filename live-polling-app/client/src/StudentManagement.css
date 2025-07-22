@@ -1,0 +1,118 @@
+.student-management-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.student-management-panel {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 70vh;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eee;
+    background: #F2F2F2;
+}
+
+.panel-header h3 {
+    margin: 0;
+    color: #373737;
+    font-size: 1.2rem;
+}
+
+.close-btn {
+    background: none;
+    border: 2px solid #6E6E6E;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6E6E6E;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    background: #4F0DCE;
+    border-color: #4F0DCE;
+    color: white;
+    transform: scale(1.1);
+}
+
+.students-list {
+    padding: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.no-students {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-name {
+    font-weight: 600;
+    color: #373737;
+    font-size: 1rem;
+}
+
+.student-time {
+    font-size: 0.85rem;
+    color: #6E6E6E;
+    margin-top: 2px;
+}
+
+.kick-btn {
+    background: #4F0DCE;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.kick-btn:hover {
+    background: #7765DA;
+}

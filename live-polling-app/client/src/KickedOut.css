@@ -1,0 +1,71 @@
+.kicked-out-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.poll-badge {
+  background: #7c5cff;
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 32px;
+  font-size: 1.5rem;
+  margin-bottom: 48px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
+}
+
+.kicked-out-content {
+  background: white;
+  padding: 48px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.kicked-out-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 24px 0;
+  line-height: 1.2;
+}
+
+.kicked-out-message {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .kicked-out-content {
+    padding: 32px 24px;
+    margin: 0 16px;
+  }
+  
+  .kicked-out-title {
+    font-size: 2rem;
+  }
+  
+  .kicked-out-message {
+    font-size: 1rem;
+  }
+  
+  .poll-badge {
+    font-size: 1.3rem;
+    padding: 10px 24px;
+  }
+}
