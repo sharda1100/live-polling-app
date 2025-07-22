@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 // Create HTTP server and attach Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -23,7 +27,10 @@ const io = new Server(server, {
         origin: "*",
         methods: ["GET", "POST"]
     },
-    transports: ['websocket', 'polling']
+    transports: ['polling', 'websocket'],
+    allowEIO3: true,
+    pingTimeout: 60000,
+    pingInterval: 25000
 });
 
 // Poll state
@@ -78,16 +85,19 @@ const endPoll = () => {
 };
 
 io.on('connection', (socket) => {
-    console.log('A user connected:', socket.id);
+    console.log('✅ User connected:', socket.id);
 
-    if (currentQuestion) {
-      socket.emit('new-question', {
-        question: currentQuestion,
-        options: currentOptions,
-        timer: currentTimer
-      });
-      // Don't send old poll results when user connects
-      console.log('Sent current question to newly connected user:', socket.id);
+    try {
+        if (currentQuestion) {
+          socket.emit('new-question', {
+            question: currentQuestion,
+            options: currentOptions,
+            timer: currentTimer
+          });
+          console.log('📤 Sent current question to newly connected user:', socket.id);
+        }
+    } catch (error) {
+        console.error('❌ Error sending current question:', error);
     }
 
     // Listen for student name registration
@@ -277,5 +287,38 @@ io.on('connection', (socket) => {
     });
 });
 
-// For Vercel deployment - export the server, not app
+// Start server
+const startServer = () => {
+    try {
+        server.listen(PORT, '0.0.0.0', () => {
+            console.log(`✅ Server running on port ${PORT}`);
+            console.log(`✅ Socket.IO ready`);
+        });
+    } catch (error) {
+        console.error('❌ Server startup error:', error);
+        process.exit(1);
+    }
+};
+
+// Handle graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('🔄 SIGTERM received, shutting down gracefully');
+    server.close(() => {
+        console.log('✅ Server closed');
+        process.exit(0);
+    });
+});
+
+process.on('SIGINT', () => {
+    console.log('🔄 SIGINT received, shutting down gracefully');
+    server.close(() => {
+        console.log('✅ Server closed');
+        process.exit(0);
+    });
+});
+
+// Start the server
+startServer();
+
+// For Vercel deployment - export the server
 module.exports = server;
