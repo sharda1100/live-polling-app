@@ -7,8 +7,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: ["*", "https://live-polling-app-nine.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true
 }));
 app.use(express.json());
 
@@ -24,8 +25,9 @@ app.get('/health', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
+        origin: ["*", "https://live-polling-app-nine.vercel.app"],
+        methods: ["GET", "POST"],
+        credentials: true
     },
     transports: ['polling', 'websocket'],
     allowEIO3: true,
