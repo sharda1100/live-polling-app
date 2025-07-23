@@ -11,15 +11,16 @@ const HOST = process.env.HOST || '0.0.0.0';
 const allowedOrigins = [
     "https://live-polling-app-nine.vercel.app",
     "https://live-polling-app-9ld6.vercel.app",
+    "https://live-polling-app-81de.vercel.app",
     "http://localhost:3000",
     "http://localhost:3001",
     "*"  // Allow all origins for now
 ];
 
 app.use(cors({
-    origin: "*",  // Allow all origins temporarily
+    origin: "*",  // Allow all origins
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: false  // No credentials needed - fixes CORS wildcard issue
 }));
 app.use(express.json());
 
@@ -40,9 +41,9 @@ app.get('/ping', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*",  // Allow all origins temporarily
+        origin: "*",  // Allow all origins
         methods: ["GET", "POST"],
-        credentials: true
+        credentials: false  // No credentials needed - fixes CORS wildcard issue
     },
     transports: ['polling', 'websocket'],
     allowEIO3: true,

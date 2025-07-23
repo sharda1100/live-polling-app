@@ -12,7 +12,7 @@ const socket = io(SOCKET_URL, {
   reconnectionDelay: 1000,
   reconnectionAttempts: 5,
   maxReconnectionAttempts: 5,
-  withCredentials: true,
+  withCredentials: false,  // Fix CORS issue - don't send credentials with wildcard CORS
   autoConnect: true,
   upgrade: true
 });
