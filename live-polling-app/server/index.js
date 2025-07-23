@@ -5,9 +5,19 @@ const { Server } = require('socket.io');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0';
+
+// CORS origins - production and development
+const allowedOrigins = [
+    "https://live-polling-app-nine.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:3001"
+];
 
 app.use(cors({
-    origin: ["*", "https://live-polling-app-nine.vercel.app"],
+    origin: process.env.NODE_ENV === 'production' 
+        ? "https://live-polling-app-nine.vercel.app" 
+        : allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true
 }));
@@ -21,18 +31,27 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+// Health check for Railway
+app.get('/ping', (req, res) => {
+    res.status(200).send('pong');
+});
+
 // Create HTTP server and attach Socket.IO
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ["*", "https://live-polling-app-nine.vercel.app"],
+        origin: process.env.NODE_ENV === 'production' 
+            ? "https://live-polling-app-nine.vercel.app" 
+            : allowedOrigins,
         methods: ["GET", "POST"],
         credentials: true
     },
     transports: ['polling', 'websocket'],
     allowEIO3: true,
     pingTimeout: 60000,
-    pingInterval: 25000
+    pingInterval: 25000,
+    upgradeTimeout: 30000,
+    maxHttpBufferSize: 1e6
 });
 
 // Poll state
@@ -290,37 +309,24 @@ io.on('connection', (socket) => {
 });
 
 // Start server
-const startServer = () => {
-    try {
-        server.listen(PORT, '0.0.0.0', () => {
-            console.log(`✅ Server running on port ${PORT}`);
-            console.log(`✅ Socket.IO ready`);
-        });
-    } catch (error) {
-        console.error('❌ Server startup error:', error);
-        process.exit(1);
-    }
-};
-
-// Handle graceful shutdown
-process.on('SIGTERM', () => {
-    console.log('🔄 SIGTERM received, shutting down gracefully');
-    server.close(() => {
-        console.log('✅ Server closed');
-        process.exit(0);
-    });
+server.listen(PORT, HOST, () => {
+    console.log(`✅ Server running on ${HOST}:${PORT}`);
+    console.log(`✅ Socket.IO ready`);
+    console.log(`✅ Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`✅ CORS Origins: ${process.env.NODE_ENV === 'production' ? 'https://live-polling-app-nine.vercel.app' : allowedOrigins.join(', ')}`);
 });
 
-process.on('SIGINT', () => {
-    console.log('🔄 SIGINT received, shutting down gracefully');
-    server.close(() => {
-        console.log('✅ Server closed');
-        process.exit(0);
-    });
+// Error handling
+server.on('error', (error) => {
+    console.error('❌ Server error:', error);
 });
 
-// Start the server
-startServer();
+process.on('uncaughtException', (error) => {
+    console.error('❌ Uncaught Exception:', error);
+});
 
-// For Vercel deployment - export the server
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 module.exports = server;

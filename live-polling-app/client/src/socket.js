@@ -5,13 +5,16 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
 console.log('Connecting to socket URL:', SOCKET_URL);
 
 const socket = io(SOCKET_URL, {
-  transports: ['polling', 'websocket'],
+  transports: ['polling', 'websocket'], // Polling first, then WebSocket
   timeout: 20000,
   forceNew: true,
   reconnection: true,
   reconnectionDelay: 1000,
   reconnectionAttempts: 5,
-  maxReconnectionAttempts: 5
+  maxReconnectionAttempts: 5,
+  withCredentials: true,
+  autoConnect: true,
+  upgrade: true
 });
 
 // Add connection event listeners for debugging
